@@ -10,27 +10,15 @@ app = FastAPI()
 class TextRequest(BaseModel):
     text: str
 
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to the API! Developed by Manasa"}
+    
 @app.post("/checksum")
 def get_checksum(request: TextRequest):
     # Compute checksum
     checksum = hashlib.sha256(request.text.encode()).hexdigest()
     return {"checksum": checksum}
-@app.get("/")
-def read_root():
-    return {"message": "Welcome to the API! Developed by [Your Name]"}
-"""
-@app.post("/checksum")
-- **Request Body:**
-  - **text:** (string) The text for which the checksum needs to be generated.
-- **Response:**
-  - **checksum:** (string) The SHA-256 checksum of the provided text.
-"""
-from fastapi.testclient import TestClient
-from main import app
 
-client = TestClient(app)
 
-def test_get_checksum():
-    response = client.post("/checksum", json={"text": "test"})
-    assert response.status_code == 200
-    assert "checksum" in response.json()
+
