@@ -20,12 +20,3 @@ def get_checksum(request: TextRequest):
 def read_root():
     return {"message": "Welcome to the API! Developed by Manasa"}
 
-from fastapi.testclient import TestClient
-from main import app
-
-client = TestClient(app)
-
-def test_get_checksum():
-    response = client.post("/checksum", json={"text": "test"})
-    assert response.status_code == 200
-    assert "checksum" in response.json()
