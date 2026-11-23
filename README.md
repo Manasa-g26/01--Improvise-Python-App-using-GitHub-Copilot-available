@@ -1,9 +1,23 @@
-# Python API Application
+Improved Python App using GitHub Copilot
+Overview
+This application generates a SHA-256 checksum for user-provided text.
 
-## How to Run
+Install Dependencies
+pip install -r requirements.txt
+Run the Application
+uvicorn main:app --reload
+API Endpoints
+GET /
+Returns a welcome message.
 
-To run the application using Uvicorn, follow these steps:
+POST /checksum
+Request:
 
-1. Install the required dependencies:
-   ```bash
-   pip install fastapi uvicorn pydantic
+{
+  "text": "hello"
+}
+Response:
+
+{
+  "checksum": "generated_checksum"
+}
